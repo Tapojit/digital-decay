@@ -1,4 +1,4 @@
-package edu.mtholyoke.cs.emendelowitz.comsc243.graphicsDemos.Curves;
+package edu.mtholyoke.cs.emendelowitz.comsc243.graphicsDemos.curves;
 
 public abstract class PObject {
 	protected ProcessingApp app;	

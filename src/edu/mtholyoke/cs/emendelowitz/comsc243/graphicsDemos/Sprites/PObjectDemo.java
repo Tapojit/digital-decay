@@ -1,4 +1,4 @@
-package edu.mtholyoke.cs.emendelowitz.comsc243.graphicsDemos.Sprites;
+package edu.mtholyoke.cs.emendelowitz.comsc243.graphicsDemos.sprites;
 
 import java.util.ArrayList;
 
