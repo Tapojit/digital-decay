@@ -2,11 +2,11 @@ package edu.mtholyoke.cs.emendelowitz.comsc243.graphicsDemos.sprites;
 
 import processing.core.PApplet;
 
-public abstract class PObject {
+public abstract class DrawObject {
 	protected PApplet applet;	
 	
 	
-	public PObject(PApplet applet) {
+	public DrawObject(PApplet applet) {
 		this.applet  = applet;
 
 	}

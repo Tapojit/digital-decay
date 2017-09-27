@@ -4,28 +4,29 @@ import java.util.ArrayList;
 
 import processing.core.PApplet;
 
-public class PObjectDemo extends PApplet {
-	ArrayList<PObject> pobjects = new ArrayList<PObject>();
+public class DrawObjectDemo extends PApplet {
+	ArrayList<DrawObject> pobjects = new ArrayList<DrawObject>();
 
 	public void settings(){
 		size(300,300, P2D);
 	}
 
 	public void setup(){
-		for(int i = 0; i< 50; i++) {
+		for(int i = 0; i< 100; i++) {
 			pobjects.add(new Ball(this, 50, 5, 15));
+		}
+		for(int i = 0; i< 100; i++) {
+			pobjects.add(new Box(this, 50, 5, 15));
 		}
 	}
 
 
-	public void update() {
-	}
 	public void draw(){
 		
 		
 		background(200);
 
-		for(PObject obj : pobjects) {
+		for(DrawObject obj : pobjects) {
 			obj.update();
 			obj.draw();
 		}
@@ -34,7 +35,7 @@ public class PObjectDemo extends PApplet {
 	}
 
 	public static void main(String[] args) {
-		PApplet.main(PObjectDemo.class.getName());
+		PApplet.main(DrawObjectDemo.class.getName());
 	}
 
 }
