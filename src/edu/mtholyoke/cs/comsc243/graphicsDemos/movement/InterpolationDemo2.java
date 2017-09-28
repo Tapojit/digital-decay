@@ -1,4 +1,4 @@
-package edu.mtholyoke.cs.emendelowitz.comsc243.graphicsDemos.movement;
+package edu.mtholyoke.cs.comsc243.graphicsDemos.movement;
 
 import processing.core.PApplet;
 

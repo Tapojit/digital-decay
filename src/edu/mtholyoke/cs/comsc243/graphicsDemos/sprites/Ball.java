@@ -1,8 +1,8 @@
-package edu.mtholyoke.cs.emendelowitz.comsc243.graphicsDemos.sprites;
+package edu.mtholyoke.cs.comsc243.graphicsDemos.sprites;
 
 import processing.core.PApplet;
 
-public class Box extends DrawObject {
+public class Ball extends DrawObject {
 	
 	float x; 
 	float y;
@@ -11,7 +11,7 @@ public class Box extends DrawObject {
 	float dx;
 	float dy;
 
-	public Box(PApplet applet, float height, float minD, float maxD) {
+	public Ball(PApplet applet, float height, float minD, float maxD) {
 		super(applet);
 		x = (float) (Math.random() * applet.width);
 		y = (float) (Math.random() * height);
@@ -30,7 +30,7 @@ public class Box extends DrawObject {
 	}
 	
 	public void draw() {
-		applet.rect(x,y,d,d);
+		applet.ellipse(x,y,d,d);
 	}
 
 }

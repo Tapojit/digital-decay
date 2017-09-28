@@ -1,13 +1,12 @@
-package edu.mtholyoke.cs.emendelowitz.comsc243.graphicsDemos.curves;
+package edu.mtholyoke.cs.comsc243.graphicsDemos.curves;
 
 import java.util.ArrayList;
 
 import processing.core.PApplet;
 
-public class BezInterpDemo extends ProcessingApp {
+public class BezDemo extends ProcessingApp {
 
 	ArrayList<DraggablePoint>  points = new ArrayList<DraggablePoint>();
-	float t = 0;
 
 
 	public void settings(){
@@ -47,30 +46,11 @@ public class BezInterpDemo extends ProcessingApp {
 				points.get(3).x, points.get(3).y
 				);
 
-		float x = bezierPoint(
-				points.get(0).x,
-				points.get(1).x,
-				points.get(2).x,
-				points.get(3).x,
-				t
-				);
-		float y = bezierPoint(
-				points.get(0).y,
-				points.get(1).y,
-				points.get(2).y,
-				points.get(3).y,
-				t
-				);
-
-		fill(0,0,255,100);
-		ellipse(x,y, 10, 10);
-		t+=.01;
-		if(t>=1.0) t = 0;
 
 
 	}
 	public static void main(String[] args) {
-		PApplet.main(BezInterpDemo.class.getName());
+		PApplet.main(BezDemo.class.getName());
 
 	}
 

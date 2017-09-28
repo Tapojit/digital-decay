@@ -1,6 +1,5 @@
-package edu.mtholyoke.cs.emendelowitz.comsc243.graphicsDemos.movement;
+package edu.mtholyoke.cs.comsc243.graphicsDemos.movement;
 
-import jogamp.graph.font.typecast.ot.Point;
 import processing.core.PApplet;
 
 public class InterpolationDemo1 extends PApplet {
