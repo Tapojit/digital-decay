@@ -1,5 +1,7 @@
 package edu.mtholyoke.cs.comsc243.kinectUDP;
 
+import java.io.IOException;
+
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -19,9 +21,10 @@ public class KinectRenderDemo extends PApplet {
 
 		/*
 		 * use this code to run your PApplet from data recorded by UPDRecorder 
-		 *
+		 */
+		/*
 		try {
-			kinectReader = new KinectBodyDataReader("recordedData.kinect");
+			kinectReader = new KinectBodyDataProvider("test.kinect", 10);
 		} catch (IOException e) {
 			System.out.println("Unable to creat e kinect producer");
 		}
@@ -33,10 +36,10 @@ public class KinectRenderDemo extends PApplet {
 	}
 	public void draw(){
 		//makes the window 2x2
-		this.scale(width/2.0f, -height/2.0f);
-
+		this.scale(width/4.0f, -height/4.0f);
 		//make positive y up and center of window 0,0
-		translate(1,-1);
+		translate(2,-2);
+		
 		noStroke();
 
 
@@ -48,7 +51,8 @@ public class KinectRenderDemo extends PApplet {
 		//fill(0,0,0, 10);
 		//rect(-1,-1, 2, 2); //draw transparent rect of the window
 
-		KinectBodyData bodyData = kinectReader.getMostRecentData();
+//		KinectBodyData bodyData = kinectReader.getMostRecentData();
+		KinectBodyData bodyData = kinectReader.getData();
 		Body person = bodyData.getPerson(0);
 		if(person != null){
 			PVector head = person.getJoint(Body.HEAD);
@@ -57,7 +61,7 @@ public class KinectRenderDemo extends PApplet {
 			PVector shoulderLeft = person.getJoint(Body.SHOULDER_LEFT);
 			PVector shoulderRight = person.getJoint(Body.SHOULDER_RIGHT);
 			PVector footLeft = person.getJoint(Body.FOOT_LEFT);
-			PVector footRight = person.getJoint(Body.FOOT_LEFT);
+			PVector footRight = person.getJoint(Body.FOOT_RIGHT);
 			PVector handLeft = person.getJoint(Body.HAND_LEFT);
 			PVector handRight = person.getJoint(Body.HAND_RIGHT);
 
@@ -74,18 +78,22 @@ public class KinectRenderDemo extends PApplet {
 			drawIfValid(handLeft);
 			drawIfValid(handRight);
 
-			if( (shoulderLeft != null) &&
-					(shoulderRight != null) &&
+			if( 
+					(footRight != null) &&
+					(footLeft != null) &&
+				//	(shoulderLeft != null) &&
+				//	(shoulderRight != null) 
 					(handLeft != null) &&
-					(handRight != null) ) {
+					(handRight != null) 
+					) {
 				stroke(255,0,0, 100);
 				noFill();
 				strokeWeight(.05f); // because of scale weight needs to be much thinner
 				curve(
+						footLeft.x, footLeft.y, 
 						handLeft.x, handLeft.y, 
-						shoulderLeft.x, shoulderLeft.y, 
-						shoulderRight.x, shoulderRight.y,
-						handRight.x, handRight.y
+						handRight.x, handRight.y,
+						footRight.x, footRight.y
 						);
 
 

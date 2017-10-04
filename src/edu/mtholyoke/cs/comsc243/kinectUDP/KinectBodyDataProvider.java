@@ -3,6 +3,7 @@ package edu.mtholyoke.cs.comsc243.kinectUDP;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 
 public class KinectBodyDataProvider {
@@ -31,14 +32,28 @@ public class KinectBodyDataProvider {
 		return msgProvider.isRunning();
 	}
 
-	public KinectBodyData getMostRecentData() {
-		msgProvider.getMsgQueue().drainTo(dataDrain);
-		if(dataDrain.size() > 0) {
-			String jsonStr = new String(dataDrain.get(dataDrain.size()-1).msg);
+	public KinectBodyData getData() {
+
+		try {
+			// get a message if there is one in the next 1/60th of a sec
+			String jsonStr  = new String(msgProvider.getMsgQueue().poll((long)(1000.0/60.0), TimeUnit.MILLISECONDS).msg);
 			mostRecentData = new KinectBodyData(jsonStr);
+		} catch (Exception e) {
+			//exceptions are expected here
 		}
 		return mostRecentData;
 	}
+
+
+
+public KinectBodyData getMostRecentData() {
+	msgProvider.getMsgQueue().drainTo(dataDrain);
+	if(dataDrain.size() > 0) {
+		String jsonStr = new String(dataDrain.get(dataDrain.size()-1).msg);
+		mostRecentData = new KinectBodyData(jsonStr);
+	}
+	return mostRecentData;
+}
 
 
 }
