@@ -18,7 +18,7 @@ public class ProjectorProportionsApp extends PApplet {
 			if(isFullscreen) {
 				fullScreen();  			
 			} else {
-				size((int)(1920 * windowsScale), (int)(1080 * windowsScale), P2D);
+				size((int)(1920 * windowsScale), (int)(1080 * windowsScale));
 			}
 		}		
 	}
@@ -31,7 +31,6 @@ public class ProjectorProportionsApp extends PApplet {
 	}
 
 	public void settings() {
-//		createWindow(true, false, .5f);
 		createWindow(true, true, .5f);
 	}
 

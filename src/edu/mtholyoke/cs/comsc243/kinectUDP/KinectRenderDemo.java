@@ -23,7 +23,7 @@ public class KinectRenderDemo extends PApplet {
 			if(isFullscreen) {
 				fullScreen();  			
 			} else {
-				size((int)(1920 * windowsScale), (int)(1080 * windowsScale), P2D);
+				size((int)(1920 * windowsScale), (int)(1080 * windowsScale));
 			}
 		}		
 	}
