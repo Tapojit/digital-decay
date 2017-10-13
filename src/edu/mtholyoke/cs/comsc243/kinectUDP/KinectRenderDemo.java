@@ -1,7 +1,5 @@
 package edu.mtholyoke.cs.comsc243.kinectUDP;
 
-import java.io.IOException;
-
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -14,10 +12,13 @@ public class KinectRenderDemo extends PApplet {
 	KinectBodyDataProvider kinectReader;
 
 	public void settings() {
-		size(500,500, P2D);
+//		size(1920, 1080, P2D);
+		fullScreen(P2D);  
+		// native resolution is 1920x1080
 	}
 
 	public void setup(){
+//		fullScreen();
 
 		/*
 		 * use this code to run your PApplet from data recorded by UPDRecorder 

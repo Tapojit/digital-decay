@@ -29,7 +29,7 @@ public class Body {
 	public static final String HIP_RIGHT = "HipRight";
 	public static final String KNEE_LEFT = "KneeLeft";
 	public static final String KNEE_RIGHT = "KneeRight";
-	public static final String Neck = "Neck";
+	public static final String NECK = "Neck";
 	public static final String SHOULDER_LEFT = "ShoulderLeft";
 	public static final String SHOULDER_RIGHT = "ShoulderRight";
 	public static final String SPINE_BASE = "SpineBase";
