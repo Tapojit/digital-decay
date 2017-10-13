@@ -31,7 +31,8 @@ public class ProjectorProportionsApp extends PApplet {
 	}
 
 	public void settings() {
-		createWindow(true, false, .5f);
+//		createWindow(true, false, .5f);
+		createWindow(true, true, .5f);
 	}
 
 	
