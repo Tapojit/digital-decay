@@ -4,6 +4,7 @@ import processing.data.JSONArray;
 
 public class KinectBodyData {
 	JSONArray jarray;
+	
 
 	public int getPersonCount() {
 		return jarray.size();
@@ -22,6 +23,7 @@ public class KinectBodyData {
 			return null;
 		}
 	}
+	
 
 	public KinectBodyData(String jsonStr) {
 		jarray = JSONArray.parse(jsonStr);
