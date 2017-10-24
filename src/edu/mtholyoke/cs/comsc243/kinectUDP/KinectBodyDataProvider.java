@@ -11,7 +11,7 @@ public class KinectBodyDataProvider {
 	KinectBodyData mostRecentData = new KinectBodyData("");
 	ArrayList<Msg> dataDrain = new ArrayList<Msg>();
 
-	PersonTracker tracker = new PersonTracker();
+//	PersonTracker tracker = new PersonTracker();
 
 
 	//read data from file recorded by UDPRecorded
@@ -41,7 +41,7 @@ public class KinectBodyDataProvider {
 			String jsonStr  = new String(msgProvider.getMsgQueue().poll((long)(1000.0/60.0), TimeUnit.MILLISECONDS).msg);
 			mostRecentData = new KinectBodyData(jsonStr);
 			
-			tracker.update(mostRecentData);
+//			tracker.update(mostRecentData);
 			
 		} catch (Exception e) {
 			//exceptions are expected here
@@ -56,7 +56,7 @@ public KinectBodyData getMostRecentData() {
 	if(dataDrain.size() > 0) {
 		String jsonStr = new String(dataDrain.get(dataDrain.size()-1).msg);
 		mostRecentData = new KinectBodyData(jsonStr);
-		tracker.update(mostRecentData);
+//		tracker.update(mostRecentData);
 
 	}
 	return mostRecentData;
