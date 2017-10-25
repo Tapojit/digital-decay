@@ -72,7 +72,9 @@ public class PersonTracker {
 	public void update(KinectBodyData data) {
 		swapActiveSet();
 		people.clear();
-		for(int i =0 ; i < data.getPersonCount(); i++) {
+		int cnt = data.getPersonCount();
+//		System.out.println("person count" + data.getPersonCount());
+		for(int i =0 ; i < cnt; i++) {
 			Body body = data.getPerson(i);
 			people.put(body.id, body);
 		}
@@ -83,13 +85,14 @@ public class PersonTracker {
 		exits.clear();
 		exits.addAll(peopleOld.keySet());
 		exits.removeAll(people.keySet());
-		
+		/*
 		for(Long l : enters) {
 			System.out.println("enter:"+ l);
 		}
 		for(Long l : exits) {
 			System.out.println(" exit:"+ l);
 		}
+		*/
 	}
 	
 	

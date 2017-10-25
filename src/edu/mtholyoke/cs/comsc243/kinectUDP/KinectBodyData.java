@@ -7,7 +7,12 @@ public class KinectBodyData {
 	
 
 	public int getPersonCount() {
-		return jarray.size();
+		try {
+			return jarray.size();			
+		} catch (NullPointerException npe) {
+			System.out.println("*** Warning malformed jarray***");
+			return 0;
+		}
 	}
 
 	/**
@@ -25,7 +30,9 @@ public class KinectBodyData {
 	}
 	
 
+	String tmpJsonStr;
 	public KinectBodyData(String jsonStr) {
+		this.tmpJsonStr = jsonStr;
 		jarray = JSONArray.parse(jsonStr);
 	}
 

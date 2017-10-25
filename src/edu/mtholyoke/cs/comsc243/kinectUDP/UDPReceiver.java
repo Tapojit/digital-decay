@@ -62,8 +62,6 @@ public class UDPReceiver implements Runnable, MsgProvider {
 				 
 				receivedMsgs.offer(new Msg(packet.getData(), packet.getLength()), timeOut, TimeUnit.MILLISECONDS);
 				
-//				String s= new String(packet.getData(), 0 , packet.getLength());
-//				System.out.println("|"+s+"|" + s.length());
 			} catch (IOException | InterruptedException ioe) {
 				if(isRunning) {
 					ioe.printStackTrace();

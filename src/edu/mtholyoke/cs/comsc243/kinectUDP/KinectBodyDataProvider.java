@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 
 public class KinectBodyDataProvider {
+	String jsonStr = null;
 	MsgProvider msgProvider;
 	KinectBodyData mostRecentData = new KinectBodyData("");
 	ArrayList<Msg> dataDrain = new ArrayList<Msg>();
@@ -34,11 +35,15 @@ public class KinectBodyDataProvider {
 		return msgProvider.isRunning();
 	}
 
+	
+	public String getJSON() {
+		return jsonStr;
+	}
 	public KinectBodyData getData() {
 
 		try {
 			// get a message if there is one in the next 1/60th of a sec
-			String jsonStr  = new String(msgProvider.getMsgQueue().poll((long)(1000.0/60.0), TimeUnit.MILLISECONDS).msg);
+			jsonStr  = new String(msgProvider.getMsgQueue().poll((long)(1000.0/60.0), TimeUnit.MILLISECONDS).msg);
 			mostRecentData = new KinectBodyData(jsonStr);
 			
 //			tracker.update(mostRecentData);
@@ -54,7 +59,7 @@ public class KinectBodyDataProvider {
 public KinectBodyData getMostRecentData() {
 	msgProvider.getMsgQueue().drainTo(dataDrain);
 	if(dataDrain.size() > 0) {
-		String jsonStr = new String(dataDrain.get(dataDrain.size()-1).msg);
+		jsonStr = new String(dataDrain.get(dataDrain.size()-1).msg);
 		mostRecentData = new KinectBodyData(jsonStr);
 //		tracker.update(mostRecentData);
 
