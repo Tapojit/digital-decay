@@ -1,7 +1,7 @@
-package edu.mtholyoke.cs.comsc243.kinectUDP;
-import java.awt.List;
+
+import java.util.*;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
+
 
 import processing.core.PApplet;
 import processing.core.PVector;
@@ -16,7 +16,7 @@ public class UsingProcessing extends PApplet{
 	ArrayList<Particle> allParticles = new ArrayList<Particle>();
 	Integer maxLevel=5;
 	Boolean useFill=false;
-	ArrayList<Integer> data = new ArrayList<Integer>();
+	List<Integer> data;
 	
 	
 	class Particle{
@@ -58,10 +58,11 @@ public class UsingProcessing extends PApplet{
 
 	
 	public void settings(){
-		  size(640, 360);
+		size(640,640);
 
 	}
 	public void setup(){
+		
 		colorMode(HSB, 360);
 		background(0);
 	}
@@ -76,14 +77,26 @@ public class UsingProcessing extends PApplet{
 				  allParticles.remove(i);
 			  }
 		  }
-		  ArrayList<PVector> pts=allParticles.stream().map(n->n.pos).collect(Collectors.toCollection(ArrayList::new));
+		  double[][] pts=new double[allParticles.size()][2];
+		  for(int i=0;i<allParticles.size();i++){
+			  pts[i][0]=Double.parseDouble(new Float(allParticles.get(i).pos.x).toString());
+			  pts[i][1]=Double.parseDouble(new Float(allParticles.get(i).pos.y).toString());
+		  }
+		  
 		  
 		  
 		  if(allParticles.size()>0){
 			  
 			  Delaunay d=new Delaunay();
-			  ArrayList<Integer> data=d.triangulate(pts);
-			  System.out.println(data.size());
+			  
+			  try {
+				data=d.triangulate(pts);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			  
 			  strokeWeight(0.1f);
 			  
 			  
