@@ -12,10 +12,11 @@ import processing.core.PVector;
  * @author eitan
  *
  */
-public class digitalDecay extends PApplet {
+public class mentalDecay extends PApplet {
 
 	KinectBodyDataProvider kinectReader;
 	public static float PROJECTOR_RATIO = 1080f/1920.0f;
+	
 
 	public void createWindow(boolean useP2D, boolean isFullscreen, float windowsScale) {
 		if (useP2D) {
@@ -41,12 +42,13 @@ public class digitalDecay extends PApplet {
 	}
 
 	public void settings() {
-		createWindow(true, true, .5f);
+		createWindow(true, false, .75f);
 	}
 
 	public void setup(){
 		colorMode(HSB, 360);
 		background(0);
+
 		/*
 		 * use this code to run your PApplet from data recorded by UPDRecorder 
 		 */
@@ -69,7 +71,8 @@ public class digitalDecay extends PApplet {
 	List<Integer> data;
 	PVector diff=new PVector(0,0);
 	PVector headP;
-	int factor=4000;
+	
+	int factor=20000;
 	class Particle{
 		int level;
 		int life;
@@ -97,7 +100,7 @@ public class digitalDecay extends PApplet {
 			
 			
 			this.pos.add(this.vel);
-			if(this.life%10==0){
+			if(this.life%20==0){
 				if(this.level>0){
 					this.level-=1;
 					Particle newParticle=new Particle(this.pos.x, this.pos.y, this.level-1);
@@ -109,7 +112,7 @@ public class digitalDecay extends PApplet {
 	}
 	
 	public void draw(){
-		setScale(.002f);
+		setScale(.006f);
 		
 //		
 //		noStroke();
@@ -133,10 +136,11 @@ public class digitalDecay extends PApplet {
 		if(person != null){
 			PVector head = person.getJoint(Body.HEAD);
 			if(head!=null){
+				
 				PVector coord=addHead(head,1);
+				
+				
 				diffCalc(coord);
-				System.out.println("diffx:"+diff.x*1000+"diffy:"+diff.y*1000);
-				System.out.println("headx:"+coord.x+"heady:"+coord.y);
 				
 				
 				
@@ -196,15 +200,21 @@ public class digitalDecay extends PApplet {
 						    }
 						    if(useFill){
 						    	noStroke();
-						    	fill((float)(165+p1.life*1.5), 360,360);
+//						    	fill((float)(165+p1.life*1.5), 360,360);
+						    	fill((float)(165+p1.life*1.5), 360, 360);
 						    }
 						    else{
 						    	noFill();
-						    	stroke((float)(165+p1.life*1.5), 360,360);
+						    	stroke((float)(250+p1.life*1.5), 360,360);
 						    }
+						    System.out.println(p1.pos.x+diff.x*factor);
 							triangle(p1.pos.x+diff.x*factor, p1.pos.y+diff.y*factor, 
 							         p2.pos.x+diff.x*factor, p2.pos.y+diff.y*factor, 
 							         p3.pos.x+diff.x*factor, p3.pos.y+diff.y*factor);
+							
+//							triangle(p1.pos.add(diff).x*factor, p1.pos.add(diff).y*factor, 
+//									p2.pos.add(diff).x*factor, p2.pos.add(diff).y*factor, 
+//									p3.pos.add(diff).x*factor, p3.pos.add(diff).y*factor);
 							
 				
 					  		}
@@ -224,6 +234,7 @@ public class digitalDecay extends PApplet {
 	public PVector addHead(PVector head,int factor){
 		PVector neo=new PVector(head.x*factor,head.y*factor);
 		allParticles.add(new Particle(neo.x,neo.y, maxLevel));
+		
 		return neo;
 	}
 
@@ -253,7 +264,7 @@ public class digitalDecay extends PApplet {
 
 
 	public static void main(String[] args) {
-		PApplet.main(digitalDecay.class.getName());
+		PApplet.main(mentalDecay.class.getName());
 	}
 
 }

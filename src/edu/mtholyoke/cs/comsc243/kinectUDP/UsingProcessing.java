@@ -16,7 +16,7 @@ public class UsingProcessing extends PApplet{
 
 	ArrayList<Particle> allParticles = new ArrayList<Particle>();
 	Integer maxLevel=5;
-	Boolean useFill=false;
+	Boolean useFill=true;
 	List<Integer> data;
 	
 	
