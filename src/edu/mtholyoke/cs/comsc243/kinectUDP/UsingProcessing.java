@@ -1,3 +1,4 @@
+package edu.mtholyoke.cs.comsc243.kinectUDP;
 
 import java.util.*;
 import java.util.ArrayList;
@@ -68,7 +69,9 @@ public class UsingProcessing extends PApplet{
 	}
 	
 	public void draw(){
-		  
+		  noStroke();
+		  fill(0, 30);
+		  rect(0, 0, width, height);
 		  
 		  for(int i=allParticles.size()-1; i>-1;i--){
 			  allParticles.get(i).move();
@@ -121,15 +124,16 @@ public class UsingProcessing extends PApplet{
 				    }
 				    if(useFill){
 				    	noStroke();
-				    	fill((float)(165+p1.life*1.5), 360,360);
+				    	fill((float)(165+p1.life*2), 360,360);
 				    }
 				    else{
 				    	noFill();
-				    	stroke((float)(165+p1.life*1.5), 360,360);
+				    	stroke((float)(165+p1.life*2), 360,360);
 				    }
 					triangle(p1.pos.x, p1.pos.y, 
 					         p2.pos.x, p2.pos.y, 
 					         p3.pos.x, p3.pos.y);
+					System.out.println(p1.life);
 				    
 				      
 			  }
