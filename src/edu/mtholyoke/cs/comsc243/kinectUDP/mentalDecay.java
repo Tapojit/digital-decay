@@ -1,12 +1,16 @@
 package edu.mtholyoke.cs.comsc243.kinectUDP;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.mtholyoke.cs.comsc243.kinectUDP.UsingProcessing.Particle;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import processing.core.PApplet;
 import processing.core.PVector;
+
 
 /**
  * @author eitan
@@ -17,7 +21,8 @@ public class mentalDecay extends PApplet {
 	KinectBodyDataProvider kinectReader;
 	public static float PROJECTOR_RATIO = 1080f/1920.0f;
 	
-
+	String path;
+	MediaPlayer mPlayer;
 	public void createWindow(boolean useP2D, boolean isFullscreen, float windowsScale) {
 		if (useP2D) {
 			if(isFullscreen) {
@@ -48,6 +53,16 @@ public class mentalDecay extends PApplet {
 	public void setup(){
 		colorMode(HSB, 360);
 		background(0);
+		String path="p1.mp3";
+		new JFXPanel();
+		Media hit = new Media(new File(path).toURI().toString());
+		mPlayer = new MediaPlayer(hit);
+		
+		
+		
+		
+		
+		
 
 		/*
 		 * use this code to run your PApplet from data recorded by UPDRecorder 
@@ -112,6 +127,8 @@ public class mentalDecay extends PApplet {
 	}
 	
 	public void draw(){
+		mPlayer.play();
+		
 		setScale(.006f);
 		
 //		
@@ -265,6 +282,7 @@ public class mentalDecay extends PApplet {
 
 	public static void main(String[] args) {
 		PApplet.main(mentalDecay.class.getName());
+
 	}
 
 }
